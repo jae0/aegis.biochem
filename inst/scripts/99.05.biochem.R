@@ -8,7 +8,7 @@
       year.assessment=lubridate::year(Sys.Date()) - 1
     }
 
-    p = aegis::aegis_parameters( DS="biochem", yrs=1950:year.assessment )  # these are default years
+    p = aegis.biochem::biochem_parameters( yrs=1950:year.assessment )  # these are default years
 
    # -----------------------------
    # biochem is not yet implemented
@@ -20,7 +20,7 @@
     for ( vn in p$varstomodel) {
       print(vn)
 
-      p = aegis::aegis_parameters( DS="biochem", yrs=1950:year.assessment, variables=list(Y=vn) )
+      p = aegis.biochem::biochem_parameters( yrs=1950:year.assessment, variables=list(Y=vn) )
       stmv( p=p, runmode=c("initialize", "globalmodel", "stage1", "stage2", "stage3", "save") )
 
       aegis_db( p=p, DS="predictions.redo" ) # warp predictions to other grids
