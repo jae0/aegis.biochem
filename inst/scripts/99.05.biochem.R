@@ -128,7 +128,7 @@ if (0) {
       outfn = file.path( out.dir, "testmap.png" )
 
 
-      p = spatial_parameters( spatial.domain="SSE" )
+      p = spatial_parameters( spatial_domain="SSE" )
 
       datarange = seq(0,80, length.out=50)
       cols = color.code( "blue.black", datarange )
