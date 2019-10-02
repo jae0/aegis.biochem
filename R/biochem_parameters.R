@@ -32,6 +32,7 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
 
   # define focal years
   if (!exists( "yrs", p)) p$yrs = 1950:lubridate::year(lubridate::now())  # default
+  p = temporal_parameters(p=p, aegis_dimensionality="space-year" )
 
 
   if (project_class=="default") {
@@ -46,7 +47,7 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
     if (!exists("variables", p)) p$variables = list()
     if (!exists("LOCS", p$variables)) p$variables$LOCS=c("plon", "plat")
     if (!exists("TIME", p$variables)) p$variables$TIME="tiyr"
-    p = aegis_parameters(p=p, DS="stmv_spatiotemporal_model", stmv_dimensionality="space-year" )
+    p = aegis_parameters(p=p, DS="stmv") # generics
     return(p)
   }
 
@@ -54,7 +55,7 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
 
   if (project_class=="carstm") {
     p$libs = c( p$libs, project.library ( "carstm" ) )
-
+    p = aegis_parameters(p=p, DS="carstm") # generics
     return(p)
   }
 
