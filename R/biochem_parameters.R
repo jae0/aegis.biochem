@@ -55,7 +55,7 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
 
   if (project_class=="carstm") {
     p$libs = c( p$libs, project.library ( "carstm" ) )
-    p = carstm_parameters(p=p, DS="basic") # generics
+    p = carstm_parameters(p=p) # generics
     return(p)
   }
 
