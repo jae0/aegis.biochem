@@ -108,7 +108,7 @@ if (0) {
       i = which( chl$year %in% c(2010:2012) )
       plot(  header_start_lat ~  header_start_lon, data=chl[i,], pch="." )
 
-      hist( chl$header_start_lat-trunc(chl$header_start_lat), "fd" )
+      hist( chl$header_start_lat-floor(chl$header_start_lat), "fd" )
 
       i = which( chl$method == 'Chl_a' )
       plot(  header_start_lat ~  header_start_lon, data=chl[i,], pch="." )
