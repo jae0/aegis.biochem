@@ -3,7 +3,7 @@
 biochem_parameters = function( p=NULL, project_name=NULL, project_class="default", ... ) {
 
 
-  p = parameters_control(p, list(...), control="add") # add passed args to parameter list, priority to args
+  p = parameters_add(p, list(...) ) # add passed args to parameter list, priority to args
 
 
   # ---------------------
