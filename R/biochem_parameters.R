@@ -1,6 +1,6 @@
 
 
-biochem_parameters = function( p=NULL, project_name=NULL, project_class="default", ... ) {
+biochem_parameters = function( p=NULL, project_name=NULL, project_class="core", ... ) {
 
 
   p = parameters_add(p, list(...) ) # add passed args to parameter list, priority to args
@@ -30,12 +30,12 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
   p = temporal_parameters(p=p, aegis_dimensionality="space-year" )
 
 
-  if (project_class=="default") {
+  if (project_class=="core") {
     return(p)
   }
 
 
-  if (project_class=="stmv") {
+  if (project_class %in% c( "stmv") ) {
     p$libs = c( p$libs, project.library ( "stmv" ) )
     p$DATA = 'biochem.db( p=p, DS="stmv_inputs" )'
     p$varstomodel = c( )
@@ -48,7 +48,15 @@ biochem_parameters = function( p=NULL, project_name=NULL, project_class="default
 
 
 
-  if (project_class=="carstm") {
+  if (project_class %in% c( "carstm" ) ) {
+    p$libs = c( p$libs, project.library ( "carstm" ) )
+    p = carstm_parameters(p=p) # generics
+    return(p)
+  }
+
+
+
+  if (project_class %in% c( "hybrid", "default") ) {
     p$libs = c( p$libs, project.library ( "carstm" ) )
     p = carstm_parameters(p=p) # generics
     return(p)
